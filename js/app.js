@@ -9,8 +9,8 @@ var Enemy = function(x,y,speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
-    this.width = 50;
-    this.height = 50;
+    this.width = 76;
+    this.height = 56;
 };
 
 // Update the enemy's position, required method for game
@@ -47,8 +47,8 @@ var Player = function () {
   // set the initial position of the player
   this.x = 200;
   this.y = 400;
-  this.width = 50;
-  this.height = 50;
+  this.width = 66;
+  this.height = 66;
 };
 
 Player.prototype.update = function () {
