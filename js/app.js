@@ -64,15 +64,15 @@ Player.prototype.render = function () {
 };
 
 Player.prototype.handleInput = function (key) {
-    console.log(key);
-    if (key == "left"){
+    console.log(this.x, this.y);
+    if (key == "left" && this.x > 0){
       this.x = this.x - 100;
-    } else if (key == "right") {
+    } else if (key == "right" && this.x < 399) {
       this.x = this.x + 100;
-    } else if (key == "up") {
-      this.y = this.y - 75;
-    } else if (key == "down") {
-      this.y = this.y + 75;
+    } else if (key == "up" && this.y > 0) {
+      this.y = this.y - 80;
+    } else if (key == "down" && this.y < 399) {
+      this.y = this.y + 80;
     };
 };
 
