@@ -6,6 +6,7 @@ var Enemy = function(x,y,speed) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    //assigns initial position, relative speed, and size parameters
     this.x = x;
     this.y = y;
     this.speed = speed;
@@ -19,16 +20,17 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x = this.x + this.speed*dt;
-    if (this.x > 600){
+
+    this.x = this.x + this.speed*dt;    //updates bug's position based on dt and assigned rele speed
+    if (this.x > 600){                  // returns bug to left side of canvas after it passes off the screen
       this.x = -100;
     }
+    // handles collisions - code adapted from MDN Axis-Aligned Bounding Box
     if (this.x < player.x + player.width &&
       this.x + this.width > player.x &&
       this.y < player.y + player.height &&
       this.height + this.y > player.y) {
         player.dead = true;
-        console.log(player.dead);
       }
 
 };
@@ -49,13 +51,29 @@ var Player = function () {
   this.y = 400;
   this.width = 66;
   this.height = 66;
+  this.wins = 0;
+  this.lives = 3;
+  this.dead = false;
 };
 
 Player.prototype.update = function () {
+  // tests status of player, returns player to beginning if "dead"
   if (this.dead){
     this.x = 200;
     this.y = 400;
+    this.lives--;
     this.dead = false;
+  };
+  if (this.lives === 0){
+    this.wins = 0;
+    this.lives = 3;
+  };
+
+  if (this.y < 1){
+    this.wins++
+    this.x = 200;
+    this.y = 400;
+    console.log(this.wins);
   };
 };
 
@@ -65,6 +83,9 @@ Player.prototype.render = function () {
 
 Player.prototype.handleInput = function (key) {
     console.log(this.x, this.y);
+
+    //tests key input against direction and updates player
+    //position if edge of canvas has not been reached
     if (key == "left" && this.x > 0){
       this.x = this.x - 100;
     } else if (key == "right" && this.x < 399) {
@@ -79,7 +100,7 @@ Player.prototype.handleInput = function (key) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var allEnemies = [new Enemy(-100, 200, 20), new Enemy(-200, 300, 60), new Enemy(-100, 100, 30), new Enemy(-100, 100, 70)];
+var allEnemies = [new Enemy(-100, 240, 20), new Enemy(-200, 320, 60), new Enemy(-100, 150, 30), new Enemy(-100, 150, 70), new Enemy(-100, 70, 85)];
 var player = new Player;
 
 

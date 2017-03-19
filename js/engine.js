@@ -135,6 +135,13 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
+        //display score
+        ctx.font = "24px serif";
+        ctx.strokeText("Score", 440, 80);
+        ctx.strokeText(player.wins*100, 450, 100);
+
+        ctx.strokeText("Lives", 15, 80);
+        ctx.strokeText(player.lives, 15, 100);
 
         renderEntities();
     }
