@@ -26,15 +26,18 @@ Enemy.prototype.update = function(dt) {
     if (this.x > 600){                  // returns bug to left side of canvas after it passes off the screen
       this.x = -100;
     }
-    // handles collisions - code adapted from MDN Axis-Aligned Bounding Box
-    if (this.x < player.x + player.width &&
-      this.x + this.width > player.x &&
-      this.y < player.y + player.height &&
-      this.height + this.y > player.y) {
-        player.dead = true;
-      }
+
     //adjusts enemy difficulty based upon player score
     this.difficulty = (player.wins * .1) + 1;
+};
+Enemy.prototype.checkCollisions = function() {
+  // check collisions - code adapted from MDN Axis-Aligned Bounding Box
+  if (this.x < player.x + player.width &&
+    this.x + this.width > player.x &&
+    this.y < player.y + player.height &&
+    this.height + this.y > player.y) {
+      player.dead = true;
+    }
 };
 
 // Draw the enemy on the screen, required method for game

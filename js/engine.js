@@ -80,7 +80,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
     }
 
     /* This is called by the update function and loops through all of the
@@ -95,6 +95,12 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
+    }
+
+    function checkCollisions(){
+      allEnemies.forEach(function(enemy) {
+          enemy.checkCollisions();
+      });
     }
 
     /* This function initially draws the "game level", it will then call
@@ -135,14 +141,7 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
-        //display score
-        ctx.font = "24px serif";
-        ctx.strokeText("Score", 440, 80);
-        ctx.strokeText(player.wins*100, 450, 100);
-        //display remaining lives
-        ctx.strokeText("Lives", 15, 80);
-        ctx.strokeText(player.lives, 15, 100);
-
+        displayScore();
         renderEntities();
     }
 
@@ -159,6 +158,16 @@ var Engine = (function(global) {
         });
 
         player.render();
+    }
+
+    function displayScore(){
+      //display score
+      ctx.font = "24px serif";
+      ctx.strokeText("Score", 440, 80);
+      ctx.strokeText(player.wins*100, 450, 100);
+      //display remaining lives
+      ctx.strokeText("Lives", 15, 80);
+      ctx.strokeText(player.lives, 15, 100);
     }
 
     /* This function does nothing but it could have been a good place to
