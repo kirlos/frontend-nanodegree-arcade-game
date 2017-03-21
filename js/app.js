@@ -9,6 +9,7 @@ var Enemy = function(x,y,speed) {
     //assigns initial position, relative speed, and size parameters
     this.x = x;
     this.y = y;
+    this.difficulty = 1;  //difficulty multiplier for higher scores/levels
     this.speed = speed;
     this.width = 76;
     this.height = 56;
@@ -21,7 +22,7 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
 
-    this.x = this.x + this.speed*dt;    //updates bug's position based on dt and assigned rele speed
+    this.x = this.x + this.speed*this.difficulty*dt;    //updates bug's position based on dt and assigned rele speed
     if (this.x > 600){                  // returns bug to left side of canvas after it passes off the screen
       this.x = -100;
     }
@@ -32,7 +33,8 @@ Enemy.prototype.update = function(dt) {
       this.height + this.y > player.y) {
         player.dead = true;
       }
-
+    //adjusts enemy difficulty based upon player score
+    this.difficulty = (player.wins * .1) + 1;
 };
 
 // Draw the enemy on the screen, required method for game
@@ -49,8 +51,10 @@ var Player = function () {
   // set the initial position of the player
   this.x = 200;
   this.y = 400;
+  //set the size of he player for collision detection
   this.width = 66;
   this.height = 66;
+  // initialize score and lives
   this.wins = 0;
   this.lives = 3;
   this.dead = false;
@@ -64,11 +68,12 @@ Player.prototype.update = function () {
     this.lives--;
     this.dead = false;
   };
+  // tests lives left, resets score and lives if all lost
   if (this.lives === 0){
     this.wins = 0;
     this.lives = 3;
   };
-
+  // tests if player has crossed "finish line", increments wins, returns player to start
   if (this.y < 1){
     this.wins++
     this.x = 200;

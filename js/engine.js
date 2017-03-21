@@ -139,7 +139,7 @@ var Engine = (function(global) {
         ctx.font = "24px serif";
         ctx.strokeText("Score", 440, 80);
         ctx.strokeText(player.wins*100, 450, 100);
-
+        //display remaining lives
         ctx.strokeText("Lives", 15, 80);
         ctx.strokeText(player.lives, 15, 100);
 
