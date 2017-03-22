@@ -31,12 +31,12 @@ Enemy.prototype.update = function(dt) {
     this.difficulty = (player.wins * .1) + 1;
 };
 Enemy.prototype.checkCollisions = function() {
-  // check collisions - code adapted from MDN Axis-Aligned Bounding Box
-  if (this.x < player.x + player.width &&
-    this.x + this.width > player.x &&
-    this.y < player.y + player.height &&
-    this.height + this.y > player.y) {
-      player.dead = true;
+    // check collisions - code adapted from MDN Axis-Aligned Bounding Box
+    if (this.x < player.x + player.width &&
+        this.x + this.width > player.x &&
+        this.y < player.y + player.height &&
+        this.height + this.y > player.y) {
+            player.dead = true;
     }
 };
 
@@ -49,40 +49,39 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function () {
-  // set the graphical representation of the player
-  this.sprite = "images/char-boy.png";
-  // set the initial position of the player
-  this.x = 200;
-  this.y = 400;
-  //set the size of he player for collision detection
-  this.width = 66;
-  this.height = 66;
-  // initialize score and lives
-  this.wins = 0;
-  this.lives = 3;
-  this.dead = false;
+    // set the graphical representation of the player
+    this.sprite = 'images/char-boy.png';
+    // set the initial position of the player
+    this.x = 200;
+    this.y = 400;
+    //set the size of he player for collision detection
+    this.width = 66;
+    this.height = 66;
+    // initialize score and lives
+    this.wins = 0;
+    this.lives = 3;
+    this.dead = false;
 };
 
 Player.prototype.update = function () {
-  // tests status of player, returns player to beginning if "dead"
-  if (this.dead){
-    this.x = 200;
-    this.y = 400;
-    this.lives--;
-    this.dead = false;
-  };
-  // tests lives left, resets score and lives if all lost
-  if (this.lives === 0){
-    this.wins = 0;
-    this.lives = 3;
-  };
-  // tests if player has crossed "finish line", increments wins, returns player to start
-  if (this.y < 1){
-    this.wins++
-    this.x = 200;
-    this.y = 400;
-    console.log(this.wins);
-  };
+    // tests status of player, returns player to beginning if "dead"
+    if (this.dead){
+        this.x = 200;
+        this.y = 400;
+        this.lives--;
+        this.dead = false;
+    }
+    // tests lives left, resets score and lives if all lost
+    if (this.lives === 0){
+        this.wins = 0;
+        this.lives = 3;
+    }
+    // tests if player has crossed "finish line", increments wins, returns player to start
+    if (this.y < 1){
+        this.wins++
+        this.x = 200;
+        this.y = 400;
+    }
 };
 
 Player.prototype.render = function () {
@@ -94,15 +93,15 @@ Player.prototype.handleInput = function (key) {
 
     //tests key input against direction and updates player
     //position if edge of canvas has not been reached
-    if (key == "left" && this.x > 0){
-      this.x = this.x - 100;
-    } else if (key == "right" && this.x < 399) {
-      this.x = this.x + 100;
-    } else if (key == "up" && this.y > 0) {
-      this.y = this.y - 80;
-    } else if (key == "down" && this.y < 399) {
-      this.y = this.y + 80;
-    };
+    if (key == 'left' && this.x > 0){
+        this.x = this.x - 100;
+    } else if (key == 'right' && this.x < 399) {
+        this.x = this.x + 100;
+    } else if (key == 'up' && this.y > 0) {
+        this.y = this.y - 80;
+    } else if (key == 'down' && this.y < 399) {
+        this.y = this.y + 80;
+    }
 };
 
 // Now instantiate your objects.

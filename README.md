@@ -1,6 +1,19 @@
-frontend-nanodegree-arcade-game
-===============================
+# frontend-nanodegree-arcade-game
+==============================
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+**This is intended to be a simplified version of the game "frogger"**
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+## How to run
+
+Open index.html in your preferred browser. The game should start immediately upon loading. Game functionality has been tested in Chrome and Firefox
+
+# How to play
+
+### Movement
+The player is moved using the arrow keys.
+### Goal
+The player will start at the bottom of the screen in the middle. The object of the game is to move the player across the screen to the blue blocks at the top, while avoiding the bugs cruising across.
+### Scoring
+Once the player successfully makes it to the top of the screen, 100 points will be added to the score and player will return to the start to try again for another 100 points. Each time the player scores the bugs will move a little faster.
+### Lives
+If the player contacts a bug, a life will be lost and the player will return to the start. If all three lives are lost, the score will be reset and a new game begins.

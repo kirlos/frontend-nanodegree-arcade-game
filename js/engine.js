@@ -98,9 +98,9 @@ var Engine = (function(global) {
     }
 
     function checkCollisions(){
-      allEnemies.forEach(function(enemy) {
-          enemy.checkCollisions();
-      });
+        allEnemies.forEach(function(enemy) {
+            enemy.checkCollisions();
+        });
     }
 
     /* This function initially draws the "game level", it will then call
